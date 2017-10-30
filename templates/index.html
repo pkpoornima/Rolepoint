@@ -1,0 +1,43 @@
+<!doctype html>
+<title>Rolepoint assignment</title>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.2.1.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+</head>
+
+</br>
+<form>
+  <input type="text" name="search" id="search" placeholder="Search..">
+</form>
+</br>
+</br>
+<table class="table" id="contact_table">
+    <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Company</th>
+    <th>City</th>
+    <th>Country</th>
+    <th>Job History</th>
+    </tr>
+    {% for item in data %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.company }}</td>
+          <td>{{ item.city }}</td>
+          <td>{{ item.country }}</td>
+          <td>
+              {% if item.job_history != "" %}
+              <ul style="list-style-type:none">
+            {% for job in item.job_history %}
+                    <li>{{ job }}</li>
+                {% endfor %}
+            </ul>
+              {% endif %}
+          </td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
